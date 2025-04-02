@@ -41,7 +41,6 @@ public class ClientController {
     public String saveClient(@ModelAttribute("client") Client client,
                              @RequestParam("date") String date,
                              ModelMap modelMap) throws ParseException {
-        // Conversion de la date
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
         Date dateInscri = dateformat.parse(String.valueOf(date));
         client.setDateinscription(dateInscri);
@@ -51,6 +50,8 @@ public class ClientController {
         modelMap.addAttribute("msg", msg);
         return "createClient";
     }
+
+
     @RequestMapping("/supprimerClient")
     public String supprimerClient(@RequestParam("id") Long id,
     ModelMap modelMap,
@@ -68,8 +69,7 @@ public class ClientController {
 
     @RequestMapping("/modifierClient")
     public String editerClient(@RequestParam("id") Long id,
-                               ModelMap modelMap@RequestParam (name="page",defaultValue = "0") int page,
-                   			@RequestParam (name="size", defaultValue = "2") int size) {
+                               ModelMap modelMap) {
         Client c = clientService.getClient(id);
         modelMap.addAttribute("client", c);
         return "editerClient";
