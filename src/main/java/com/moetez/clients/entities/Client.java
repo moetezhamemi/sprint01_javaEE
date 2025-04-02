@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 @Entity
 public class Client {
@@ -16,6 +17,21 @@ public class Client {
 	private String emailclient;
 	private Date dateinscription;
 	private String adresseclient;
+	@ManyToOne
+	@JoinColumn(name = "type_idtype", referencedColumnName = "idtype")
+	private Type type;
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public void setIdclient(Long idclient) {
+		this.idclient = idclient;
+	}
+
 	public Client() {
 		super();}
 	

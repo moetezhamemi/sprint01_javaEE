@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import com.moetez.clients.entities.Client;
 import com.moetez.clients.repos.ClientRepository;
 import com.moetez.clients.service.ClientService;
+import com.moetez.clients.entities.Type;
 
 @SpringBootTest
 class ClientsApplicationTests {
@@ -63,6 +64,64 @@ class ClientsApplicationTests {
 		cls.getContent().forEach(c -> {
 			System.out.println(c.toString());
 		});
+	}
+
+	@Test
+	public void testFindByNomClient() {
+		List<Client> cls = clientRepository.findByNomclient("moetez");
+		for (Client c : cls) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testFindByNomClientContains() {
+		List<Client> cls = clientRepository.findByNomclientContains("moe");
+		for (Client c : cls) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testfindByNomAdresse() {
+		List<Client> cls = clientRepository.findByNomAdresse("moetez", "tunis");
+		for (Client c : cls) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testfindByType() {
+		Type t = new Type();
+		t.setIdType(1L);
+		List<Client> cls = clientRepository.findByType(t);
+		for (Client c : cls) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void findByTypeIdType() {
+		List<Client> cls = clientRepository.findByTypeIdType(1L);
+		for (Client c : cls) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testfindByOrderByNomclientAsc() {
+		List<Client> cls = clientRepository.findByOrderByNomclientAsc();
+		for (Client c : cls) {
+			System.out.println(c);
+		}
+	}
+
+	@Test
+	public void testTrierClientsNomsAdresse() {
+		List<Client> cls = clientRepository.trierClientsNomsAdresse();
+		for (Client c : cls) {
+			System.out.println(c);
+		}
 	}
 
 }
