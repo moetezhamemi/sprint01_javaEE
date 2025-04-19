@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import com.moetez.clients.entities.Client;
 import com.moetez.clients.entities.Type;
 import com.moetez.clients.repos.ClientRepository;
+import com.moetez.clients.repos.TypeRepository;
 @Service
 public class ClientServiceImpl implements ClientService {
 	@Autowired
 	ClientRepository clientRepository;
+	@Autowired
+	TypeRepository typeRepository;
 	@Override
 	public Client saveClient(Client c) {
 		
@@ -83,6 +86,11 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public List<Client> trierClientsNomsAdresse() {
 		return clientRepository.trierClientsNomsAdresse();
+	}
+	@Override
+	public List<Type> getAllTypes()
+	{
+		return typeRepository.findAll();
 	}
 
 }

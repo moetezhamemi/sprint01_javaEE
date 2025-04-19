@@ -22,5 +22,7 @@ public interface ClientService {
 	List<Client> findByTypeIdType(Long id);
 	List<Client> findByOrderByNomclientAsc();
 	List<Client> trierClientsNomsAdresse();
+	List<Type> getAllTypes();
+
 
 }

@@ -2,20 +2,34 @@ package com.moetez.clients.entities;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.*;
+
+
 @Entity
 public class Client {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idclient;
+	@NotNull
+	@Size (min = 4,max = 15)
 	private String nomclient; 
 	private String emailclient;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@PastOrPresent
 	private Date dateinscription;
+	@NotNull
+	@Size (min = 4,max = 15)
 	private String adresseclient;
 	@ManyToOne
 	@JoinColumn(name = "type_idtype", referencedColumnName = "idtype")
@@ -43,7 +57,7 @@ public class Client {
 		this.adresseclient = adresseclient;
 	}
 	
-	public long getIdclient() {
+	public Long getIdclient() {
 		return idclient;
 	}
 	public void setIdclient(long idclient) {

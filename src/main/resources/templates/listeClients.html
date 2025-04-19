@@ -22,20 +22,27 @@
 						<th>Nom Client</th>
 						<th>email Client</th>
 						<th>date inscription</th>
-						<th>adresse client Client</th>
+						<th>adresse client </th>
+						<th>type </th>
 					<tr th:each="c:${clients.content}">
 						<td th:text="${c.idclient}"></td>
 						<td th:text="${c.nomclient}"></td>
 						<td th:text="${c.emailclient}"></td>
 						<td th:text="${#dates.format(c.dateinscription, 'dd/MM/yyyy')}"></td>
 						<td th:text="${c.adresseclient}"></td>
-						<td><a class="btn btn-success" th:href="@{modifierClient(id=${c.idclient})}">modifier</a></td>
-						<td>
-							<a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
-								th:href="@{supprimerClient(id=${c.idclient},page=${currentPage},size=${size})}">
-								Supprimer
-							</a>
+						<td th:if="${!#strings.isEmpty(c.type)}" th:text="${c.type.nomType}"></td>
+						<td th:if="${#strings.isEmpty(c.type)}" th:text="${'Pas de Type'}"></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger"
+								onclick="return confirm('Etes-vous sûr ?')" th:href="@{supprimerClient(id=${c.idclient},
+						page=${currentPage},size=${size})}">Supprimer</a>
 						</td>
+						<td sec:authorize="hasAuthority('ADMIN')">						
+							<a class="btn btn-success"
+						   th:href="@{modifierClient(id=${c.idclient}, page=${currentPage}, size=${size})}">
+						   Editer
+						</a>
+</td>
+
 					</tr>
 
 				</table>
