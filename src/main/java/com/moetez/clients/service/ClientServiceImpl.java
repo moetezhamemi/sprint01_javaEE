@@ -10,6 +10,7 @@ import com.moetez.clients.entities.Client;
 import com.moetez.clients.entities.Type;
 import com.moetez.clients.repos.ClientRepository;
 import com.moetez.clients.repos.TypeRepository;
+import com.moetez.dto.ClientDto;
 @Service
 public class ClientServiceImpl implements ClientService {
 	@Autowired
@@ -91,6 +92,25 @@ public class ClientServiceImpl implements ClientService {
 	public List<Type> getAllTypes()
 	{
 		return typeRepository.findAll();
+	}
+	@Override
+	public ClientDto convertEntityToDto(Client client) {
+	 ClientDto clientDTO = new ClientDto();
+	 clientDTO.setIdClient(client.getIdclient());
+	 clientDTO.setAdresseclient(client.getAdresseclient());
+	 clientDTO.setDateInscription(client.getDateinscription());
+	 clientDTO.setEmailclient(client.getEmailclient());
+	 
+	}
+
+
+	 /*return ProduitDTO.builder()
+	.idProduit(produit.getIdProduit())
+	.nomProduit(produit.getNomProduit())
+	.prixProduit(produit.getPrixProduit())
+	.dateCreation(p.getDateCreation())
+	.categorie(produit.getCategorie())
+	.build();*/
 	}
 
 }
