@@ -21,5 +21,4 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 	List<Client> findByOrderByNomclientAsc();
 	@Query("select c from Client c order by c.nomclient ASC, c.adresseclient DESC")
 	List<Client> trierClientsNomsAdresse ();
-
 }

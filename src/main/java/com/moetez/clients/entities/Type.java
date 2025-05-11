@@ -26,6 +26,4 @@ public class Type {
 	@JsonIgnore
 	@OneToMany(mappedBy = "type")
 	private List<Client> clients;
-
-	
 }

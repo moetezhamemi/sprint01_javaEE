@@ -11,8 +11,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.moetez.clients.entities.Client;
 import com.moetez.clients.entities.Type;
 import com.moetez.clients.service.ClientService;
@@ -116,5 +119,6 @@ public class ClientController {
     public String welcome() {
      return "index";
     }
+
 
 }
